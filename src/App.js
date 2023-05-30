@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import WidgetBaseOutlet from "./widgets/base/WidgetBaseOutlet";
+import PageAuthLogin from "./pages/auth/PageAuthLogin";
+import PageBarangList from "./pages/barang/PageBarangList";
+import PageBase404 from "./pages/base/PageBase404";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<WidgetBaseOutlet />}>
+          <Route index element={<PageAuthLogin />} />
+          <Route path="barang" element={<PageBarangList />} />
+          <Route path="*" element={<PageBase404 />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
